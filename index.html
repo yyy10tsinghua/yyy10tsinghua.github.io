@@ -152,6 +152,28 @@
       list-style: none;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-toggle {
+      border: 1px solid rgba(126, 162, 255, 0.45);
+      background: rgba(18, 33, 62, 0.78);
+      color: #d6e2ff;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .lang-toggle:hover {
+      transform: translateY(-2px);
+      background: rgba(28, 47, 84, 0.9);
+    }
+
     .nav-links a {
       color: var(--text-dim);
       text-decoration: none;
@@ -389,30 +411,155 @@
 
     .blog-list {
       display: grid;
-      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
     .blog-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 16px;
-      border-radius: 12px;
+      padding: 16px;
+      border-radius: 14px;
       border: 1px solid rgba(128, 163, 240, 0.25);
       background: rgba(16, 27, 50, 0.7);
       text-decoration: none;
       color: var(--text);
-      transition: border-color 0.25s, transform 0.25s;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s;
+      display: grid;
+      gap: 10px;
     }
 
     .blog-item:hover {
-      transform: translateX(4px);
+      transform: translateY(-3px);
       border-color: rgba(166, 193, 255, 0.56);
+      background: rgba(23, 37, 67, 0.92);
     }
 
-    .blog-item span {
+    .blog-title {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .blog-summary {
+      color: var(--text-dim);
+      font-size: 13px;
+      line-height: 1.7;
+      min-height: 44px;
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       color: var(--text-dim);
       font-size: 12px;
+    }
+
+    .read-more {
+      color: #cde0ff;
+      font-weight: 600;
+    }
+
+    .project-action {
+      margin-top: 14px;
+    }
+
+    .detail-btn {
+      border: 1px solid rgba(138, 175, 255, 0.45);
+      background: rgba(18, 32, 60, 0.8);
+      color: #d7e5ff;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .detail-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(33, 53, 92, 0.9);
+    }
+
+    .article-previews {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .article-preview {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(115, 153, 235, 0.26);
+      background: rgba(14, 25, 47, 0.72);
+    }
+
+    .article-preview h4 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .article-preview p {
+      color: var(--text-dim);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 8, 20, 0.72);
+      backdrop-filter: blur(8px);
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-mask.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(760px, 94vw);
+      max-height: 84vh;
+      overflow: auto;
+      background: rgba(14, 25, 49, 0.95);
+      border: 1px solid rgba(138, 174, 255, 0.34);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 20px 20px 18px;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    .modal-close {
+      border: 1px solid rgba(141, 176, 255, 0.42);
+      background: rgba(27, 44, 78, 0.74);
+      color: #d6e4ff;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .modal-text {
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 12px;
     }
 
     footer {
@@ -448,10 +595,16 @@
       .nav-links {
         display: none;
       }
+      .article-previews {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 640px) {
       .cards {
+        grid-template-columns: 1fr;
+      }
+      .blog-list {
         grid-template-columns: 1fr;
       }
       .hero h1 {
@@ -472,12 +625,15 @@
         <i class="brand-badge"></i>
         <span>睡不着的UU · Personal Terminal</span>
       </div>
-      <ul class="nav-links">
-        <li><a href="#about">关于我</a></li>
-        <li><a href="#projects">项目</a></li>
-        <li><a href="#resume">简历</a></li>
-        <li><a href="#blog">博客</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a id="navAbout" href="#about">关于我</a></li>
+          <li><a id="navProjects" href="#projects">项目</a></li>
+          <li><a id="navResume" href="#resume">简历</a></li>
+          <li><a id="navBlog" href="#blog">博客</a></li>
+        </ul>
+        <button class="lang-toggle" id="langToggle">EN</button>
+      </div>
     </nav>
   </header>
 
@@ -485,7 +641,7 @@
     <section class="hero reveal">
       <div>
         <h1>睡不着的UU</h1>
-        <p class="subtitle">
+        <p class="subtitle" id="heroSubtitle">
           面向智能系统与工程仿真的开发者。聚焦自动驾驶、流体仿真与高性能通讯工具，偏爱冷静、精确、可扩展的技术产品。
         </p>
         <div class="tags">
@@ -495,36 +651,36 @@
           <span class="tag">Communication Tooling</span>
         </div>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">查看项目</a>
-          <a class="btn btn-ghost" href="#blog">进入博客</a>
+          <a class="btn btn-primary" id="heroBtnProjects" href="#projects">查看项目</a>
+          <a class="btn btn-ghost" id="heroBtnBlog" href="#blog">进入博客</a>
         </div>
       </div>
       <aside class="hero-card">
-        <h3>当前状态</h3>
+        <h3 id="heroStatusTitle">当前状态</h3>
         <div class="stats">
           <div class="stat">
             <strong>03</strong>
-            <span>核心项目进行中</span>
+            <span id="statLabel1">核心项目进行中</span>
           </div>
           <div class="stat">
             <strong>24+</strong>
-            <span>技术文章规划</span>
+            <span id="statLabel2">技术文章规划</span>
           </div>
           <div class="stat">
             <strong>5</strong>
-            <span>重点技术方向</span>
+            <span id="statLabel3">重点技术方向</span>
           </div>
           <div class="stat">
             <strong>∞</strong>
-            <span>夜间灵感时段</span>
+            <span id="statLabel4">夜间灵感时段</span>
           </div>
         </div>
       </aside>
     </section>
 
     <section id="about" class="reveal">
-      <h2 class="section-title">关于我</h2>
-      <p class="section-desc">
+      <h2 class="section-title" id="aboutTitle">关于我</h2>
+      <p class="section-desc" id="aboutDesc">
         你好，我是睡不着的UU。这里是我的长期个人站点模板，后续会用于沉淀项目实践、工程思考和博客文章。
         当前内容为演示填充版，你可以直接替换成真实经历、教育背景、技术栈与联系方式。
       </p>
@@ -560,34 +716,21 @@
     </section>
 
     <section id="projects" class="reveal">
-      <h2 class="section-title">项目工作</h2>
-      <p class="section-desc">以下为当前展示项目卡片，均已支持后续快速替换字段。</p>
+      <h2 class="section-title" id="projectsTitle">项目工作</h2>
+      <p class="section-desc" id="projectsDesc">以下为当前展示项目卡片，均已支持后续快速替换字段。</p>
       <div class="cards" id="projectCards"></div>
     </section>
 
     <section id="resume" class="reveal">
-      <h2 class="section-title">简历概览</h2>
+      <h2 class="section-title" id="resumeTitle">简历概览</h2>
       <div class="resume-grid">
         <div class="card">
-          <h3>经历时间线</h3>
-          <div class="timeline">
-            <div class="line-item">
-              <strong>2026 · 个人工程站启动</strong>
-              <span>搭建 github.io 主页，沉淀项目与博客内容</span>
-            </div>
-            <div class="line-item">
-              <strong>2025 · 仿真工具链整合</strong>
-              <span>打通自动驾驶传感器布置与风洞模拟分析流程</span>
-            </div>
-            <div class="line-item">
-              <strong>2024 · 轻量通讯组件实践</strong>
-              <span>面向 OpenClaw 场景开发极简 IM 通讯工具</span>
-            </div>
-          </div>
+          <h3 id="timelineTitle">经历时间线</h3>
+          <div class="timeline" id="timelineList"></div>
         </div>
         <div class="card">
-          <h3>能力矩阵</h3>
-          <p>工程方向：仿真系统、实时可视化、协议通讯、Web 前端体验。</p>
+          <h3 id="skillsTitle">能力矩阵</h3>
+          <p id="skillsDesc1">工程方向：仿真系统、实时可视化、协议通讯、Web 前端体验。</p>
           <div class="pill-list" style="margin-bottom: 14px;">
             <span class="pill">Simulation</span>
             <span class="pill">Sensor Fusion</span>
@@ -595,66 +738,376 @@
             <span class="pill">Web UI</span>
             <span class="pill">Protocol</span>
           </div>
-          <p>可补充：教育背景、工作单位、开源贡献、证书、论文等信息。</p>
+          <p id="skillsDesc2">可补充：教育背景、工作单位、开源贡献、证书、论文等信息。</p>
         </div>
       </div>
     </section>
 
     <section id="blog" class="reveal">
-      <h2 class="section-title">博客入口</h2>
-      <p class="section-desc">这里先放示例文章，后续可以改成真实博文链接或接入静态博客引擎。</p>
+      <h2 class="section-title" id="blogTitle">博客入口</h2>
+      <p class="section-desc" id="blogDesc">这里先放示例文章，后续可以改成真实博文链接或接入静态博客引擎。</p>
       <div class="blog-list" id="blogList"></div>
+      <div class="article-previews" id="articlePreviews"></div>
     </section>
 
-    <footer>
+    <footer id="footerText">
       © 2026 睡不着的UU · Midnight Neural Port · Built for GitHub Pages
     </footer>
   </main>
 
+  <div class="modal-mask" id="projectModalMask">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <button class="modal-close" id="modalClose">×</button>
+      </div>
+      <p class="modal-text" id="modalDesc"></p>
+      <div class="pill-list" id="modalTags"></div>
+      <p class="modal-text" id="modalDetail" style="margin-top: 12px;"></p>
+    </div>
+  </div>
+
   <script>
+    const textMap = {
+      zh: {
+        title: "睡不着的UU | Midnight Neural Port",
+        navAbout: "关于我",
+        navProjects: "项目",
+        navResume: "简历",
+        navBlog: "博客",
+        heroSubtitle: "面向智能系统与工程仿真的开发者。聚焦自动驾驶、流体仿真与高性能通讯工具，偏爱冷静、精确、可扩展的技术产品。",
+        heroBtnProjects: "查看项目",
+        heroBtnBlog: "进入博客",
+        heroStatusTitle: "当前状态",
+        statLabel1: "核心项目进行中",
+        statLabel2: "技术文章规划",
+        statLabel3: "重点技术方向",
+        statLabel4: "夜间灵感时段",
+        aboutTitle: "关于我",
+        aboutDesc: "你好，我是睡不着的UU。这里是我的长期个人站点模板，后续会用于沉淀项目实践、工程思考和博客文章。当前内容为演示填充版，你可以直接替换成真实经历、教育背景、技术栈与联系方式。",
+        projectsTitle: "项目工作",
+        projectsDesc: "以下为当前展示项目卡片，均已支持后续快速替换字段。",
+        resumeTitle: "简历概览",
+        timelineTitle: "经历时间线",
+        skillsTitle: "能力矩阵",
+        skillsDesc1: "工程方向：仿真系统、实时可视化、协议通讯、Web 前端体验。",
+        skillsDesc2: "可补充：教育背景、工作单位、开源贡献、证书、论文等信息。",
+        blogTitle: "博客入口",
+        blogDesc: "这里先放示例文章，后续可以改成真实博文链接或接入静态博客引擎。",
+        readMore: "阅读文章",
+        detailBtn: "查看详情",
+        footerText: "© 2026 睡不着的UU · Midnight Neural Port · Built for GitHub Pages"
+      },
+      en: {
+        title: "Sleepless UU | Midnight Neural Port",
+        navAbout: "About",
+        navProjects: "Projects",
+        navResume: "Resume",
+        navBlog: "Blog",
+        heroSubtitle: "Engineer focused on intelligent systems and simulation products, with ongoing work in autonomous driving, CFD workflows, and communication tooling.",
+        heroBtnProjects: "View Projects",
+        heroBtnBlog: "Open Blog",
+        heroStatusTitle: "Current Status",
+        statLabel1: "Core projects in progress",
+        statLabel2: "Planned tech articles",
+        statLabel3: "Primary tech tracks",
+        statLabel4: "Late-night inspiration",
+        aboutTitle: "About Me",
+        aboutDesc: "Hi, I am Sleepless UU. This is a long-term personal site template for project logs, engineering thoughts, and blog writing. All current copy is placeholder content and easy to replace with real experience.",
+        projectsTitle: "Project Works",
+        projectsDesc: "Cards below are generated from data and can be updated quickly.",
+        resumeTitle: "Resume Snapshot",
+        timelineTitle: "Timeline",
+        skillsTitle: "Capability Matrix",
+        skillsDesc1: "Focus areas: simulation systems, real-time visualization, protocol communication, and web UI engineering.",
+        skillsDesc2: "You can add education, companies, open-source contributions, certificates, and publications here.",
+        blogTitle: "Blog Gateway",
+        blogDesc: "Sample article cards with jump links are ready. You can replace them with real post URLs later.",
+        readMore: "Read Post",
+        detailBtn: "Details",
+        footerText: "© 2026 Sleepless UU · Midnight Neural Port · Built for GitHub Pages"
+      }
+    };
+
     const projects = [
       {
-        title: "自动驾驶传感器布置仿真工具",
-        description: "用于多传感器组合建模与覆盖评估，支持不同车型与工况快速配置，输出可视化报告。",
+        slug: "sensor-layout",
+        title: { zh: "自动驾驶传感器布置仿真工具", en: "Autonomous Sensor Layout Simulator" },
+        description: {
+          zh: "用于多传感器组合建模与覆盖评估，支持不同车型与工况快速配置，输出可视化报告。",
+          en: "A simulation tool for multi-sensor placement and coverage analysis across vehicle profiles and runtime scenarios."
+        },
+        detail: {
+          zh: "系统支持相机、激光雷达、毫米波雷达的参数化配置，并提供视场盲区分析、重叠区域统计和复杂工况下的可视化回放。",
+          en: "Supports parameterized camera/LiDAR/radar setup, blind-spot analysis, overlap statistics, and replay visualizations under complex driving conditions."
+        },
         tags: ["Sensor Layout", "Simulation", "Coverage Analysis"]
       },
       {
-        title: "CFD 风洞模拟器",
-        description: "面向气动性能探索的仿真平台，支持参数扫描、流场观察与结果对比，提升设计决策效率。",
+        slug: "cfd-wind",
+        title: { zh: "CFD 风洞模拟器", en: "CFD Wind Tunnel Simulator" },
+        description: {
+          zh: "面向气动性能探索的仿真平台，支持参数扫描、流场观察与结果对比，提升设计决策效率。",
+          en: "A CFD workbench for aerodynamic evaluation with parameter sweeps, flow visualization, and comparative result tracking."
+        },
+        detail: {
+          zh: "覆盖网格划分策略、边界条件模板和结果可视化模块，支持快速定位阻力异常与压差分布风险。",
+          en: "Includes meshing strategies, boundary-condition templates, and analysis views to quickly identify drag anomalies and pressure distribution risks."
+        },
         tags: ["CFD", "Wind Tunnel", "Numerical Analysis"]
       },
       {
-        title: "OpenClaw 通讯极简 IM 工具",
-        description: "轻量级即时通讯组件，聚焦稳定传输与低认知负担交互，适配 OpenClaw 通讯场景。",
+        slug: "openclaw-im",
+        title: { zh: "OpenClaw 通讯极简 IM 工具", en: "OpenClaw Minimal IM Tool" },
+        description: {
+          zh: "轻量级即时通讯组件，聚焦稳定传输与低认知负担交互，适配 OpenClaw 通讯场景。",
+          en: "A lightweight IM layer tuned for OpenClaw with stable transport, concise interaction flow, and low-latency communication."
+        },
+        detail: {
+          zh: "包含会话状态管理、消息重试与失败补偿机制，可用于设备协同调试和工程状态广播。",
+          en: "Includes session-state control, retry and compensation mechanisms, suitable for collaborative device debugging and status broadcasting."
+        },
         tags: ["IM", "OpenClaw", "Low Latency"]
       }
     ];
 
     const blogs = [
-      { title: "从 0 到 1 搭建 github.io 技术主页", date: "2026-03-16" },
-      { title: "自动驾驶传感器布置仿真中的取舍逻辑", date: "2026-03-10" },
-      { title: "CFD 可视化结果如何指导工程决策", date: "2026-03-01" },
-      { title: "极简 IM 的可靠性设计清单", date: "2026-02-20" }
+      {
+        slug: "launch-blog",
+        title: { zh: "从 0 到 1 搭建 github.io 技术主页", en: "Building a github.io Tech Site from Scratch" },
+        summary: {
+          zh: "记录从信息架构、视觉风格到部署细节的完整流程。",
+          en: "A practical walkthrough from information architecture and design style to deployment details."
+        },
+        preview: {
+          zh: "文章包括仓库命名规范、主页结构拆分、可维护文案数据化，以及上线后更新策略。",
+          en: "Covers repository naming, homepage structure, data-driven copy management, and post-launch update strategy."
+        },
+        date: "2026-03-16"
+      },
+      {
+        slug: "sensor-tradeoff",
+        title: { zh: "自动驾驶传感器布置仿真中的取舍逻辑", en: "Trade-offs in Autonomous Sensor Layout Simulation" },
+        summary: {
+          zh: "从覆盖率、冗余与成本角度讨论传感器布局决策。",
+          en: "Discusses sensor placement decisions across coverage, redundancy, and cost."
+        },
+        preview: {
+          zh: "内容聚焦关键指标权重设定、工况样本选择和仿真结果的工程解释方法。",
+          en: "Focuses on metric weighting, scenario sampling, and engineering interpretation of simulation outputs."
+        },
+        date: "2026-03-10"
+      },
+      {
+        slug: "cfd-decision",
+        title: { zh: "CFD 可视化结果如何指导工程决策", en: "How CFD Visualizations Guide Engineering Decisions" },
+        summary: {
+          zh: "总结流场图到设计修改建议之间的转译过程。",
+          en: "Summarizes how flow-field visualization can be translated into concrete design decisions."
+        },
+        preview: {
+          zh: "强调结果可读性、对比实验设计和多目标优化下的取舍路径。",
+          en: "Highlights result readability, comparative experiment setup, and trade-off paths in multi-objective optimization."
+        },
+        date: "2026-03-01"
+      },
+      {
+        slug: "im-reliability",
+        title: { zh: "极简 IM 的可靠性设计清单", en: "Reliability Checklist for a Minimal IM Stack" },
+        summary: {
+          zh: "梳理连接恢复、投递确认与状态同步的核心设计点。",
+          en: "Outlines key reliability points including reconnect logic, delivery acknowledgements, and state synchronization."
+        },
+        preview: {
+          zh: "文章给出状态机拆解方式和高并发情况下的降级处理策略。",
+          en: "Provides state-machine decomposition and graceful degradation strategy under high-concurrency conditions."
+        },
+        date: "2026-02-20"
+      }
     ];
 
-    const projectCards = document.getElementById("projectCards");
-    projectCards.innerHTML = projects.map(project => `
-      <article class="card">
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-        <div class="pill-list">
-          ${project.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
-        </div>
-      </article>
-    `).join("");
+    const timeline = [
+      {
+        title: { zh: "2026 · 个人工程站启动", en: "2026 · Personal Engineering Site Launch" },
+        desc: { zh: "搭建 github.io 主页，沉淀项目与博客内容", en: "Built a github.io site for project and blog accumulation." }
+      },
+      {
+        title: { zh: "2025 · 仿真工具链整合", en: "2025 · Simulation Toolchain Integration" },
+        desc: { zh: "打通自动驾驶传感器布置与风洞模拟分析流程", en: "Integrated autonomous sensor-layout workflow with wind-tunnel simulation analysis." }
+      },
+      {
+        title: { zh: "2024 · 轻量通讯组件实践", en: "2024 · Lightweight Communication Module Practice" },
+        desc: { zh: "面向 OpenClaw 场景开发极简 IM 通讯工具", en: "Developed a minimal IM tool tailored for OpenClaw communication scenarios." }
+      }
+    ];
 
-    const blogList = document.getElementById("blogList");
-    blogList.innerHTML = blogs.map(item => `
-      <a class="blog-item" href="javascript:void(0)">
-        <strong>${item.title}</strong>
-        <span>${item.date}</span>
-      </a>
-    `).join("");
+    const aboutCards = [
+      {
+        title: { zh: "技术定位", en: "Technical Positioning" },
+        desc: { zh: "偏系统工程和交互产品结合，关注仿真可信度、性能优化与可维护性。", en: "Focused on system engineering + product interaction, prioritizing simulation reliability, performance, and maintainability." },
+        tags: ["Architecture", "Visualization", "Optimization"]
+      },
+      {
+        title: { zh: "工作风格", en: "Working Style" },
+        desc: { zh: "先建模型再落地实现，重视验证链路，保证方案既有前瞻性也能快速迭代。", en: "Model-first and validation-driven workflow to keep solutions forward-looking and iterative." },
+        tags: ["Data Driven", "Iterative", "High Reliability"]
+      },
+      {
+        title: { zh: "长期目标", en: "Long-term Goal" },
+        desc: { zh: "构建个人知识与项目中台，把实验成果逐步产品化，并持续输出技术内容。", en: "Build a personal knowledge/project hub, productize experimental outcomes, and continuously publish technical content." },
+        tags: ["Productize", "Open Sharing", "Engineering Depth"]
+      }
+    ];
+
+    let currentLang = "zh";
+    let activeProjectIndex = 0;
+
+    const aboutCardsContainer = document.querySelector("#about .cards");
+    const projectCardsContainer = document.getElementById("projectCards");
+    const blogListContainer = document.getElementById("blogList");
+    const articlePreviewsContainer = document.getElementById("articlePreviews");
+    const timelineList = document.getElementById("timelineList");
+    const langToggle = document.getElementById("langToggle");
+    const modalMask = document.getElementById("projectModalMask");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalTags = document.getElementById("modalTags");
+    const modalDetail = document.getElementById("modalDetail");
+    const modalClose = document.getElementById("modalClose");
+
+    function setText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    function renderAbout() {
+      aboutCardsContainer.innerHTML = aboutCards.map(item => `
+        <article class="card">
+          <h3>${item.title[currentLang]}</h3>
+          <p>${item.desc[currentLang]}</p>
+          <div class="pill-list">
+            ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderTimeline() {
+      timelineList.innerHTML = timeline.map(item => `
+        <div class="line-item">
+          <strong>${item.title[currentLang]}</strong>
+          <span>${item.desc[currentLang]}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderProjects() {
+      projectCardsContainer.innerHTML = projects.map((project, index) => `
+        <article class="card">
+          <h3>${project.title[currentLang]}</h3>
+          <p>${project.description[currentLang]}</p>
+          <div class="pill-list">
+            ${project.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
+          </div>
+          <div class="project-action">
+            <button class="detail-btn" data-project-index="${index}">${textMap[currentLang].detailBtn}</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderBlogs() {
+      blogListContainer.innerHTML = blogs.map(item => `
+        <a class="blog-item" href="#post-${item.slug}">
+          <h3 class="blog-title">${item.title[currentLang]}</h3>
+          <p class="blog-summary">${item.summary[currentLang]}</p>
+          <div class="blog-meta">
+            <span>${item.date}</span>
+            <span class="read-more">${textMap[currentLang].readMore} →</span>
+          </div>
+        </a>
+      `).join("");
+
+      articlePreviewsContainer.innerHTML = blogs.map(item => `
+        <article class="article-preview" id="post-${item.slug}">
+          <h4>${item.title[currentLang]}</h4>
+          <p>${item.preview[currentLang]}</p>
+        </article>
+      `).join("");
+    }
+
+    function openProjectModal(index) {
+      activeProjectIndex = index;
+      const project = projects[index];
+      modalTitle.textContent = project.title[currentLang];
+      modalDesc.textContent = project.description[currentLang];
+      modalTags.innerHTML = project.tags.map(tag => `<span class="pill">${tag}</span>`).join("");
+      modalDetail.textContent = project.detail[currentLang];
+      modalMask.classList.add("show");
+    }
+
+    function closeProjectModal() {
+      modalMask.classList.remove("show");
+    }
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      const dict = textMap[currentLang];
+      document.title = dict.title;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      setText("navAbout", dict.navAbout);
+      setText("navProjects", dict.navProjects);
+      setText("navResume", dict.navResume);
+      setText("navBlog", dict.navBlog);
+      setText("heroSubtitle", dict.heroSubtitle);
+      setText("heroBtnProjects", dict.heroBtnProjects);
+      setText("heroBtnBlog", dict.heroBtnBlog);
+      setText("heroStatusTitle", dict.heroStatusTitle);
+      setText("statLabel1", dict.statLabel1);
+      setText("statLabel2", dict.statLabel2);
+      setText("statLabel3", dict.statLabel3);
+      setText("statLabel4", dict.statLabel4);
+      setText("aboutTitle", dict.aboutTitle);
+      setText("aboutDesc", dict.aboutDesc);
+      setText("projectsTitle", dict.projectsTitle);
+      setText("projectsDesc", dict.projectsDesc);
+      setText("resumeTitle", dict.resumeTitle);
+      setText("timelineTitle", dict.timelineTitle);
+      setText("skillsTitle", dict.skillsTitle);
+      setText("skillsDesc1", dict.skillsDesc1);
+      setText("skillsDesc2", dict.skillsDesc2);
+      setText("blogTitle", dict.blogTitle);
+      setText("blogDesc", dict.blogDesc);
+      setText("footerText", dict.footerText);
+      langToggle.textContent = currentLang === "zh" ? "EN" : "中文";
+      renderAbout();
+      renderTimeline();
+      renderProjects();
+      renderBlogs();
+      if (modalMask.classList.contains("show")) {
+        openProjectModal(activeProjectIndex);
+      }
+    }
+
+    langToggle.addEventListener("click", () => {
+      applyLanguage(currentLang === "zh" ? "en" : "zh");
+    });
+
+    projectCardsContainer.addEventListener("click", event => {
+      const trigger = event.target.closest("button[data-project-index]");
+      if (!trigger) return;
+      openProjectModal(Number(trigger.dataset.projectIndex));
+    });
+
+    modalClose.addEventListener("click", closeProjectModal);
+    modalMask.addEventListener("click", event => {
+      if (event.target === modalMask) closeProjectModal();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && modalMask.classList.contains("show")) {
+        closeProjectModal();
+      }
+    });
 
     const revealNodes = Array.from(document.querySelectorAll(".reveal"));
     const revealObserver = new IntersectionObserver(entries => {
@@ -704,6 +1157,7 @@
     }
 
     window.addEventListener("resize", resizeCanvas);
+    applyLanguage("zh");
     resizeCanvas();
     drawParticles();
   </script>
