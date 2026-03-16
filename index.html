@@ -553,6 +553,36 @@
       margin-bottom: 14px;
     }
 
+    .blog-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 16px;
+    }
+
+    .blog-filter-btn {
+      border: 1px solid var(--detail-btn-border);
+      background: var(--detail-btn-bg);
+      color: var(--detail-btn-text);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .blog-filter-btn:hover {
+      transform: translateY(-1px);
+      background: var(--detail-btn-hover-bg);
+    }
+
+    .blog-filter-btn.active {
+      background: linear-gradient(120deg, #98b9ff, #61ddd3);
+      color: var(--btn-primary-text);
+      border-color: transparent;
+      font-weight: 600;
+    }
+
     .blog-item {
       padding: 16px;
       border-radius: 14px;
@@ -624,39 +654,6 @@
       background: var(--detail-btn-hover-bg);
     }
 
-    .article-previews {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .article-preview {
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px solid var(--article-preview-border);
-      background: var(--article-preview-bg);
-    }
-
-    .article-preview h4 {
-      font-size: 15px;
-      margin-bottom: 8px;
-    }
-
-    .preview-thumb {
-      width: 100%;
-      height: 170px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 1px solid var(--article-preview-border);
-      margin-bottom: 10px;
-    }
-
-    .article-preview p {
-      color: var(--text-dim);
-      font-size: 13px;
-      line-height: 1.7;
-    }
 
     .modal-mask {
       position: fixed;
@@ -748,9 +745,6 @@
       }
       .nav-links {
         display: none;
-      }
-      .article-previews {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -904,8 +898,8 @@
     <section id="blog" class="reveal">
       <h2 class="section-title" id="blogTitle">博客入口</h2>
       <p class="section-desc" id="blogDesc">这里先放示例文章，后续可以改成真实博文链接或接入静态博客引擎。</p>
+      <div class="blog-filters" id="blogFilters"></div>
       <div class="blog-list" id="blogList"></div>
-      <div class="article-previews" id="articlePreviews"></div>
     </section>
 
     <footer id="footerText">
@@ -951,7 +945,9 @@
         skillsDesc1: "工程方向：仿真系统、实时可视化、协议通讯、Web 前端体验。",
         skillsDesc2: "可补充：教育背景、工作单位、开源贡献、证书、论文等信息。",
         blogTitle: "博客入口",
-        blogDesc: "这里整理了公众号原文及拆分后的技术条目，包含阶段结论与配图位，可继续扩展为系列文章。",
+        blogDesc: "当前博客归拢为四篇核心文章，每篇都对应独立子页面，可持续补充实验细节与配图。",
+        blogTagAll: "全部",
+        blogEmpty: "当前标签下暂无文章。",
         readMore: "阅读文章",
         detailBtn: "查看详情",
         footerText: "© 2026 睡不着的UU · Midnight Neural Port · Built for GitHub Pages"
@@ -980,7 +976,9 @@
         skillsDesc1: "Focus areas: simulation systems, real-time visualization, protocol communication, and web UI engineering.",
         skillsDesc2: "You can add education, companies, open-source contributions, certificates, and publications here.",
         blogTitle: "Blog Gateway",
-        blogDesc: "This section now organizes the WeChat article and its technical spin-offs, with image slots and expandable detail points.",
+        blogDesc: "The blog now contains four core posts, each linked to an independent subpage for continuous expansion.",
+        blogTagAll: "All",
+        blogEmpty: "No posts under this tag.",
         readMore: "Read Post",
         detailBtn: "Details",
         footerText: "© 2026 Sleepless UU · Midnight Neural Port · Built for GitHub Pages"
@@ -1036,60 +1034,51 @@
 
     const blogs = [
       {
-        slug: "code-show-talk",
-        title: { zh: "Code is cheap, show me the talk：三段 AI 工程实验复盘", en: "Code is Cheap, Show Me the Talk: Three AI Engineering Experiments" },
+        slug: "openclaw-first-look",
+        title: { zh: "OpenClaw初体验", en: "OpenClaw First Look" },
         summary: {
-          zh: "公众号原文总览：AD-Sim、WT-Sim、OpenClaw 三条线并行推进，核心观点是“AI 化时代还在黎明，但窗口已经打开”。",
-          en: "WeChat long-form overview across AD-Sim, WT-Sim, and OpenClaw. Core thesis: AI-native era is still dawn, but the opportunity window is open."
+          zh: "记录第一次把 OpenClaw 引入工程流程时的真实体验：安装门槛、学习曲线、以及为什么它能迅速提高实验迭代效率。",
+          en: "A first-hand log of introducing OpenClaw into engineering flow: setup friction, learning curve, and why it speeds iteration."
         },
-        preview: {
-          zh: "建议你后续把公众号完整图组逐步替换到下方卡片配图位。当前配图为可替换封面，文案已按原文语气组织成技术博客结构。",
-          en: "Replace the current cover slots with your original WeChat image set later. The copy already mirrors your narrative voice in a technical-blog structure."
-        },
-        cover: makeCoverImage("Code is cheap", "show me the talk", "#3d74e2", "#19b4cf"),
-        url: "https://mp.weixin.qq.com/s/tUfq2I8KVfZZWv_F1rqDvw",
+        cover: makeCoverImage("OpenClaw", "First Look", "#5164de", "#29c9d8"),
+        url: "posts/openclaw-first-look.html",
+        tags: ["OpenClaw", "Agent", "工程实践"],
         date: "2026-03-16"
       },
       {
-        slug: "ad-sim-build",
-        title: { zh: "AD-Sim 开发笔记：传感器覆盖不是堆数量", en: "AD-Sim Notes: Coverage Is Not Just More Sensors" },
+        slug: "wt-sim-cfd",
+        title: { zh: "WT-Sim，开源的高性能CFD流体仿真工具", en: "WT-Sim: An Open-Source High-Performance CFD Tool" },
         summary: {
-          zh: "围绕“少传感器、全覆盖、可解释”三目标，记录场景建模、参数调节与点云导出的完整链路。",
-          en: "A full chain from scene modeling to point-cloud export under three targets: fewer sensors, wider coverage, and interpretable results."
+          zh: "从需求定义到并行加速，梳理 WT-Sim 的核心设计：为什么选择 OpenFOAM、如何控制网格规模、如何让结果更可解释。",
+          en: "From requirement framing to parallel acceleration, this post explains WT-Sim's design around OpenFOAM, mesh scale, and explainable results."
         },
-        preview: {
-          zh: "文中海绵宝宝场景是很好的工程示例：先用可视化把盲区问题说清，再谈参数优化与成本权衡。",
-          en: "The SpongeBob scene becomes an engineering example: make blind zones visible first, then optimize parameters and cost trade-offs."
-        },
-        cover: makeCoverImage("AD-Sim", "Open3D | Sensor Coverage", "#5b5af6", "#2ac7d4"),
+        cover: makeCoverImage("WT-Sim", "OpenFOAM | CFD", "#3f70e4", "#3bcf9a"),
+        url: "posts/wt-sim-cfd.html",
+        tags: ["WT-Sim", "CFD", "OpenFOAM"],
         date: "2026-03-10"
       },
       {
-        slug: "wt-sim-iteration",
-        title: { zh: "WT-Sim 迭代纪要：从能跑到能用于决策", en: "WT-Sim Iteration: From Running to Decision-Making" },
+        slug: "ad-sim-layout",
+        title: { zh: "AD-Sim，如何模拟验证自动驾驶传感器布置", en: "AD-Sim: Simulating and Validating Sensor Layouts" },
         summary: {
-          zh: "基于 OpenFOAM 的轻量风洞，重点记录网格规模、多核并行与结果可视化如何影响调参效率。",
-          en: "A lightweight OpenFOAM tunnel log focused on mesh scale, multicore execution, and visualization-driven tuning efficiency."
+          zh: "聚焦“覆盖率、冗余度、成本”三角平衡，展示 AD-Sim 如何把传感器布置从经验决策转成可复现实验流程。",
+          en: "Focuses on the triangle of coverage, redundancy, and cost, showing how AD-Sim turns sensor layout into reproducible experiments."
         },
-        preview: {
-          zh: "“马模型”和“赛车模型”是两个里程碑：一个验证流程完整性，一个验证并行性能与可复现实验。",
-          en: "Horse and race-car cases are two milestones: one validates workflow completeness, the other validates parallel performance and reproducibility."
-        },
-        cover: makeCoverImage("WT-Sim", "OpenFOAM | 8M Mesh", "#416be7", "#44d8a7"),
+        cover: makeCoverImage("AD-Sim", "Sensor Layout", "#5a5cf1", "#29c5d0"),
+        url: "posts/ad-sim-layout.html",
+        tags: ["AD-Sim", "自动驾驶", "传感器布置"],
         date: "2026-03-01"
       },
       {
-        slug: "agent-im-native",
-        title: { zh: "从 OpenClaw 到 Agent 原生 IM：为什么要自己做通信层", en: "From OpenClaw to Agent-Native IM: Why Build Your Own Comm Layer" },
+        slug: "xiashuo-im",
+        title: { zh: "虾说，我的龙虾专用IM工具", en: "XiaShuo: My Lobster-Focused IM Tool" },
         summary: {
-          zh: "把“安装门槛高、现有 IM 割裂、任务闭环弱”等真实问题，抽象为可落地的通讯系统需求列表。",
-          en: "Transforms practical pain points—setup friction, mismatched IM flows, weak task closure—into implementable communication requirements."
+          zh: "面向“龙虾”工作流设计的极简通讯工具：把会话、文件和任务状态放到同一上下文里，减少跨工具切换成本。",
+          en: "A minimal communication tool for the 'Lobster' workflow, placing chat, files, and task state in one context to reduce tool switching."
         },
-        preview: {
-          zh: "核心主张是“小而硬”：点对点、文件互传、插件化展示、可审计操作，比堆功能更接近 Agent 时代入口。",
-          en: "The core idea is 'small but hard': P2P, file exchange, plugin views, and auditable actions are closer to an agent-era entry point than feature bloat."
-        },
-        cover: makeCoverImage("OpenClaw", "Agent-native IM", "#5364d8", "#20c6de"),
+        cover: makeCoverImage("虾说", "Lobster IM", "#4d66db", "#26c4df"),
+        url: "posts/xiashuo-im.html",
+        tags: ["虾说", "IM工具", "通信层"],
         date: "2026-02-20"
       }
     ];
@@ -1129,11 +1118,12 @@
 
     let currentLang = "zh";
     let activeProjectIndex = 0;
+    let activeBlogTag = "ALL";
 
     const aboutCardsContainer = document.querySelector("#about .cards");
     const projectCardsContainer = document.getElementById("projectCards");
+    const blogFiltersContainer = document.getElementById("blogFilters");
     const blogListContainer = document.getElementById("blogList");
-    const articlePreviewsContainer = document.getElementById("articlePreviews");
     const timelineList = document.getElementById("timelineList");
     const langToggle = document.getElementById("langToggle");
     const themeToggle = document.getElementById("themeToggle");
@@ -1185,25 +1175,34 @@
       `).join("");
     }
 
+    function renderBlogFilters() {
+      const allTags = Array.from(new Set(blogs.flatMap(item => item.tags)));
+      const options = [{ key: "ALL", label: textMap[currentLang].blogTagAll }, ...allTags.map(tag => ({ key: tag, label: tag }))];
+      blogFiltersContainer.innerHTML = options.map(option => `
+        <button class="blog-filter-btn ${activeBlogTag === option.key ? "active" : ""}" data-blog-tag="${option.key}">${option.label}</button>
+      `).join("");
+    }
+
     function renderBlogs() {
-      blogListContainer.innerHTML = blogs.map(item => `
-        <a class="blog-item" href="${item.url || `#post-${item.slug}`}" ${item.url ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+      renderBlogFilters();
+      const filteredBlogs = activeBlogTag === "ALL" ? blogs : blogs.filter(item => item.tags.includes(activeBlogTag));
+      if (!filteredBlogs.length) {
+        blogListContainer.innerHTML = `<article class="card"><p>${textMap[currentLang].blogEmpty}</p></article>`;
+        return;
+      }
+      blogListContainer.innerHTML = filteredBlogs.map(item => `
+        <a class="blog-item" href="${item.url}">
           <img class="blog-thumb" src="${item.cover}" alt="${item.title[currentLang]}">
           <h3 class="blog-title">${item.title[currentLang]}</h3>
           <p class="blog-summary">${item.summary[currentLang]}</p>
+          <div class="pill-list">
+            ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
+          </div>
           <div class="blog-meta">
             <span>${item.date}</span>
             <span class="read-more">${textMap[currentLang].readMore} →</span>
           </div>
         </a>
-      `).join("");
-
-      articlePreviewsContainer.innerHTML = blogs.map(item => `
-        <article class="article-preview" id="post-${item.slug}">
-          <img class="preview-thumb" src="${item.cover}" alt="${item.title[currentLang]}">
-          <h4>${item.title[currentLang]}</h4>
-          <p>${item.preview[currentLang]}</p>
-        </article>
       `).join("");
     }
 
@@ -1288,6 +1287,13 @@
       const trigger = event.target.closest("button[data-project-index]");
       if (!trigger) return;
       openProjectModal(Number(trigger.dataset.projectIndex));
+    });
+
+    blogFiltersContainer.addEventListener("click", event => {
+      const trigger = event.target.closest("button[data-blog-tag]");
+      if (!trigger) return;
+      activeBlogTag = trigger.dataset.blogTag;
+      renderBlogs();
     });
 
     modalClose.addEventListener("click", closeProjectModal);

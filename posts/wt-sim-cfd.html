@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WT-Sim，开源的高性能CFD流体仿真工具</title>
+  <style>
+    :root {
+      --bg: #081222;
+      --panel: rgba(15, 27, 52, 0.9);
+      --line: rgba(111, 163, 225, 0.3);
+      --text: #e8efff;
+      --text-dim: #a5b7de;
+      --accent: #77d7b1;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 90% 0%, rgba(56, 197, 148, 0.2), transparent 32%), linear-gradient(140deg, #06101e, #0b1831 52%, #102a44);
+      color: var(--text);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      padding: 28px 16px 48px;
+    }
+    .container { width: min(860px, 100%); margin: 0 auto; }
+    .back { display: inline-flex; text-decoration: none; color: var(--accent); margin-bottom: 16px; font-size: 14px; }
+    article { border: 1px solid var(--line); background: var(--panel); border-radius: 16px; padding: 24px; }
+    h1 { font-size: 34px; line-height: 1.25; margin-bottom: 12px; }
+    .meta { color: var(--text-dim); font-size: 13px; margin-bottom: 18px; }
+    h2 { font-size: 22px; margin: 20px 0 10px; }
+    p { color: var(--text-dim); line-height: 1.9; margin-bottom: 12px; font-size: 15px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font-size: 12px; color: #c6ffee; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="../index.html#blog">← 返回主页博客</a>
+    <article>
+      <h1>WT-Sim，开源的高性能CFD流体仿真工具</h1>
+      <div class="meta">2026-03-10 · 睡不着的UU</div>
+      <div class="tag-list">
+        <span class="tag">WT-Sim</span>
+        <span class="tag">CFD</span>
+        <span class="tag">OpenFOAM</span>
+      </div>
+      <p>这篇记录 WT-Sim 的核心目标：做一个可解释、可复现、可扩展的开源 CFD 工作流。重点不是“把仿真跑出来”，而是让工程团队能快速理解“为什么会是这个结果”。</p>
+      <h2>架构上的三件事</h2>
+      <p>第一，输入参数规范化，避免同一组实验在不同人手里出现隐性偏差。第二，计算任务并行化，保证网格规模拉升时仍能在可接受时间内返回。第三，结果可视化模板化，让流场和压力变化能够直接进入讨论。</p>
+      <h2>性能不是唯一指标</h2>
+      <p>在迭代里，我把“结果可信”放在“结果更快”之前。很多时候并不是算力不够，而是边界条件和网格策略不一致导致的误读。WT-Sim 的改进方向也因此明确：先减少误判，再追求极致速度。</p>
+      <h2>后续补充计划</h2>
+      <p>下一版会补充不同网格密度下的误差对比、并行核数与收敛速度曲线，以及典型场景参数模板。目标是让读者可以直接复现实验，而不是只看结论。</p>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AD-Sim，如何模拟验证自动驾驶传感器布置</title>
+  <style>
+    :root {
+      --bg: #0a1022;
+      --panel: rgba(17, 26, 54, 0.9);
+      --line: rgba(122, 142, 236, 0.34);
+      --text: #eaf0ff;
+      --text-dim: #acbadf;
+      --accent: #8ea7ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 0%, rgba(120, 148, 255, 0.24), transparent 34%), linear-gradient(140deg, #060b1a, #0e1732 52%, #162851);
+      color: var(--text);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      padding: 28px 16px 48px;
+    }
+    .container { width: min(860px, 100%); margin: 0 auto; }
+    .back { display: inline-flex; text-decoration: none; color: var(--accent); margin-bottom: 16px; font-size: 14px; }
+    article { border: 1px solid var(--line); background: var(--panel); border-radius: 16px; padding: 24px; }
+    h1 { font-size: 34px; line-height: 1.25; margin-bottom: 12px; }
+    .meta { color: var(--text-dim); font-size: 13px; margin-bottom: 18px; }
+    h2 { font-size: 22px; margin: 20px 0 10px; }
+    p { color: var(--text-dim); line-height: 1.9; margin-bottom: 12px; font-size: 15px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font-size: 12px; color: #d0dcff; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="../index.html#blog">← 返回主页博客</a>
+    <article>
+      <h1>AD-Sim，如何模拟验证自动驾驶传感器布置</h1>
+      <div class="meta">2026-03-01 · 睡不着的UU</div>
+      <div class="tag-list">
+        <span class="tag">AD-Sim</span>
+        <span class="tag">自动驾驶</span>
+        <span class="tag">传感器布置</span>
+      </div>
+      <p>传感器布置一直有个常见误区：把“多”当成“好”。这篇文章希望把讨论拉回工程逻辑，用 AD-Sim 做一套可以复现实验的验证流程，让每个位置调整都能回答“为什么”。</p>
+      <h2>核心验证框架</h2>
+      <p>我把评估拆成三层：几何可见性、场景覆盖率、成本约束。几何层解决“看不看得到”，覆盖层解决“看得够不够”，成本层解决“值不值得上”。三层一起看，才能避免单点指标误导。</p>
+      <h2>实验过程里的关键取舍</h2>
+      <p>如果完全追求覆盖，硬件成本会很快失控；如果只压成本，盲区风险又会放大。AD-Sim 的价值不在于给唯一答案，而是把一组可比较方案放到同一个可视化框架里，让选择更透明。</p>
+      <h2>下一步会补什么</h2>
+      <p>后续我会把典型场景库、参数建议区间和异常工况回放补全，再加上对比图，方便大家直接复用这套流程做自己的布置验证。</p>
+    </article>
+  </main>
+</body>
+</html>

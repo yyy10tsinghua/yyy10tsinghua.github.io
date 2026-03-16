@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>虾说，我的龙虾专用IM工具</title>
+  <style>
+    :root {
+      --bg: #0a1223;
+      --panel: rgba(15, 27, 50, 0.9);
+      --line: rgba(96, 188, 224, 0.33);
+      --text: #e8f4ff;
+      --text-dim: #a5c4d8;
+      --accent: #5fd0f3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 90% 8%, rgba(74, 194, 229, 0.22), transparent 30%), linear-gradient(140deg, #071120, #0d1a34 52%, #10324a);
+      color: var(--text);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      padding: 28px 16px 48px;
+    }
+    .container { width: min(860px, 100%); margin: 0 auto; }
+    .back { display: inline-flex; text-decoration: none; color: var(--accent); margin-bottom: 16px; font-size: 14px; }
+    article { border: 1px solid var(--line); background: var(--panel); border-radius: 16px; padding: 24px; }
+    h1 { font-size: 34px; line-height: 1.25; margin-bottom: 12px; }
+    .meta { color: var(--text-dim); font-size: 13px; margin-bottom: 18px; }
+    h2 { font-size: 22px; margin: 20px 0 10px; }
+    p { color: var(--text-dim); line-height: 1.9; margin-bottom: 12px; font-size: 15px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font-size: 12px; color: #c7f1ff; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="../index.html#blog">← 返回主页博客</a>
+    <article>
+      <h1>虾说，我的龙虾专用IM工具</h1>
+      <div class="meta">2026-02-20 · 睡不着的UU</div>
+      <div class="tag-list">
+        <span class="tag">虾说</span>
+        <span class="tag">IM工具</span>
+        <span class="tag">通信层</span>
+      </div>
+      <p>“虾说”是一个很私人的项目名字，背后其实是很工程化的需求：我希望消息、文件和任务状态能在同一个界面闭环，不再在多个聊天工具和任务板之间来回跳。</p>
+      <h2>为什么不是继续改造现有IM</h2>
+      <p>现有 IM 很强，但目标场景和我不一致。它们擅长“组织协作”，而我更看重“任务执行闭环”。当通信层直接服务于 Agent 工作流时，消息结构、状态同步和权限边界都需要重新定义。</p>
+      <h2>最小可用版本的设计</h2>
+      <p>第一阶段只做四件事：稳定会话、可追踪文件传输、任务状态联动、基本审计日志。刻意不做复杂社交功能，是为了保证每次迭代都能围绕核心链路验证价值。</p>
+      <h2>后续方向</h2>
+      <p>我会继续补上插件化扩展点和异常恢复机制，并公开一版协议草案。希望“虾说”能成为一个小而硬的通信底座，而不是另一个功能堆叠的聊天壳。</p>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw初体验</title>
+  <style>
+    :root {
+      --bg: #0a1326;
+      --panel: rgba(14, 25, 49, 0.88);
+      --line: rgba(129, 166, 255, 0.28);
+      --text: #e7edff;
+      --text-dim: #9fb0d7;
+      --accent: #7daaff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 85% 5%, rgba(72, 125, 255, 0.2), transparent 28%), linear-gradient(135deg, #050814, #0a1326 46%, #102243);
+      color: var(--text);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      padding: 28px 16px 48px;
+    }
+    .container { width: min(860px, 100%); margin: 0 auto; }
+    .back {
+      display: inline-flex;
+      text-decoration: none;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    article {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    h1 { font-size: 34px; line-height: 1.2; margin-bottom: 12px; }
+    .meta { color: var(--text-dim); font-size: 13px; margin-bottom: 18px; }
+    h2 { font-size: 22px; margin: 20px 0 10px; }
+    p { color: var(--text-dim); line-height: 1.9; margin-bottom: 12px; font-size: 15px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font-size: 12px; color: #c7d8ff; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="../index.html#blog">← 返回主页博客</a>
+    <article>
+      <h1>OpenClaw初体验</h1>
+      <div class="meta">2026-03-16 · 睡不着的UU</div>
+      <div class="tag-list">
+        <span class="tag">OpenClaw</span>
+        <span class="tag">Agent</span>
+        <span class="tag">工程实践</span>
+      </div>
+      <p>这篇先不聊宏大叙事，只记录第一次把 OpenClaw 拉进真实工程流的感受。最直观的变化是：过去“思路在脑子里、执行在多个窗口”的状态，被压缩成一个更短的反馈回路。每一步虽然还不完美，但已经能看到自动化协作的骨架。</p>
+      <h2>为什么会尝试它</h2>
+      <p>我原本的痛点很明确：重复操作多、上下文切换频繁、问题定位慢。OpenClaw 最吸引我的不是“能做多少事”，而是“能否稳定完成一件事”。如果基础动作可靠，后面的流程拆解和能力扩展才有意义。</p>
+      <h2>第一次上手的真实阻力</h2>
+      <p>初期阻力集中在环境配置和任务边界定义。配置本身不难，难的是把“我心里想做什么”翻译成“系统能稳定执行什么”。我最后的做法是先缩小目标，把任务拆成可验证的小块，先追求可跑通，再追求漂亮。</p>
+      <h2>阶段结论</h2>
+      <p>OpenClaw 对我来说已经不是“尝鲜工具”，而是实验流程中的一个稳定节点。接下来我会继续补上具体的命令流、失败案例和参数模板，把这篇从体验记录升级成可复用的工程指南。</p>
+    </article>
+  </main>
+</body>
+</html>
