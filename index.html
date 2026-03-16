@@ -565,6 +565,14 @@
       gap: 10px;
     }
 
+    .blog-thumb {
+      width: 100%;
+      height: 148px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--blog-item-border);
+    }
+
     .blog-item:hover {
       transform: translateY(-3px);
       border-color: var(--blog-item-hover-border);
@@ -633,6 +641,15 @@
     .article-preview h4 {
       font-size: 15px;
       margin-bottom: 8px;
+    }
+
+    .preview-thumb {
+      width: 100%;
+      height: 170px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--article-preview-border);
+      margin-bottom: 10px;
     }
 
     .article-preview p {
@@ -925,16 +942,16 @@
         statLabel3: "重点技术方向",
         statLabel4: "夜间灵感时段",
         aboutTitle: "关于我",
-        aboutDesc: "你好，我是睡不着的UU。这里是我的长期个人站点模板，后续会用于沉淀项目实践、工程思考和博客文章。当前内容为演示填充版，你可以直接替换成真实经历、教育背景、技术栈与联系方式。",
+        aboutDesc: "我是睡不着的UU。春节期间围绕“AI + 工程软件”做了三次密集实验：AD-Sim 传感器布置校验、WT-Sim 风洞仿真，以及 OpenClaw 场景下的极简通讯链路。这个站点会按技术博客的方式持续记录从想法、踩坑到可运行版本的全过程。",
         projectsTitle: "项目工作",
-        projectsDesc: "以下为当前展示项目卡片，均已支持后续快速替换字段。",
+        projectsDesc: "项目条目已按文章中的真实脉络重写：问题背景、技术路径、关键能力与迭代观察。",
         resumeTitle: "简历概览",
         timelineTitle: "经历时间线",
         skillsTitle: "能力矩阵",
         skillsDesc1: "工程方向：仿真系统、实时可视化、协议通讯、Web 前端体验。",
         skillsDesc2: "可补充：教育背景、工作单位、开源贡献、证书、论文等信息。",
         blogTitle: "博客入口",
-        blogDesc: "这里先放示例文章，后续可以改成真实博文链接或接入静态博客引擎。",
+        blogDesc: "这里整理了公众号原文及拆分后的技术条目，包含阶段结论与配图位，可继续扩展为系列文章。",
         readMore: "阅读文章",
         detailBtn: "查看详情",
         footerText: "© 2026 睡不着的UU · Midnight Neural Port · Built for GitHub Pages"
@@ -954,16 +971,16 @@
         statLabel3: "Primary tech tracks",
         statLabel4: "Late-night inspiration",
         aboutTitle: "About Me",
-        aboutDesc: "Hi, I am Sleepless UU. This is a long-term personal site template for project logs, engineering thoughts, and blog writing. All current copy is placeholder content and easy to replace with real experience.",
+        aboutDesc: "I am Sleepless UU. During Spring Festival, I ran three intensive AI-powered engineering experiments: AD-Sim for sensor-layout validation, WT-Sim for wind-tunnel CFD, and a minimal communication workflow around OpenClaw. This site now follows a technical-blog narrative from idea to working build.",
         projectsTitle: "Project Works",
-        projectsDesc: "Cards below are generated from data and can be updated quickly.",
+        projectsDesc: "Each project card now follows the real article flow: problem framing, technical route, key capabilities, and iteration insights.",
         resumeTitle: "Resume Snapshot",
         timelineTitle: "Timeline",
         skillsTitle: "Capability Matrix",
         skillsDesc1: "Focus areas: simulation systems, real-time visualization, protocol communication, and web UI engineering.",
         skillsDesc2: "You can add education, companies, open-source contributions, certificates, and publications here.",
         blogTitle: "Blog Gateway",
-        blogDesc: "Sample article cards with jump links are ready. You can replace them with real post URLs later.",
+        blogDesc: "This section now organizes the WeChat article and its technical spin-offs, with image slots and expandable detail points.",
         readMore: "Read Post",
         detailBtn: "Details",
         footerText: "© 2026 Sleepless UU · Midnight Neural Port · Built for GitHub Pages"
@@ -975,12 +992,12 @@
         slug: "sensor-layout",
         title: { zh: "自动驾驶传感器布置仿真工具", en: "Autonomous Sensor Layout Simulator" },
         description: {
-          zh: "用于多传感器组合建模与覆盖评估，支持不同车型与工况快速配置，输出可视化报告。",
-          en: "A simulation tool for multi-sensor placement and coverage analysis across vehicle profiles and runtime scenarios."
+          zh: "基于 Open3D 的 AD-Sim，用最小成本验证激光雷达与相机组合在不同车型/工况下的覆盖效果。",
+          en: "An Open3D-based AD-Sim tool to validate LiDAR-camera coverage with minimal sensor cost across vehicle setups."
         },
         detail: {
-          zh: "系统支持相机、激光雷达、毫米波雷达的参数化配置，并提供视场盲区分析、重叠区域统计和复杂工况下的可视化回放。",
-          en: "Supports parameterized camera/LiDAR/radar setup, blind-spot analysis, overlap statistics, and replay visualizations under complex driving conditions."
+          zh: "支持三维场景搭建、传感器姿态与内参配置、点云覆盖观察、盲区分析与 PCD 导出。文章里提到的“前向 + 左右补盲”组合，已经能在工具里直接复现实验流程。",
+          en: "Supports 3D scene building, sensor pose/intrinsics setup, point-cloud coverage inspection, blind-zone analysis, and PCD export. The article's forward + side supplementary setup is directly reproducible."
         },
         tags: ["Sensor Layout", "Simulation", "Coverage Analysis"]
       },
@@ -988,12 +1005,12 @@
         slug: "cfd-wind",
         title: { zh: "CFD 风洞模拟器", en: "CFD Wind Tunnel Simulator" },
         description: {
-          zh: "面向气动性能探索的仿真平台，支持参数扫描、流场观察与结果对比，提升设计决策效率。",
-          en: "A CFD workbench for aerodynamic evaluation with parameter sweeps, flow visualization, and comparative result tracking."
+          zh: "围绕 OpenFOAM 的 WT-Sim，支持风洞尺寸与流体参数配置，并输出流场/速度场/风压可视化。",
+          en: "WT-Sim around OpenFOAM with wind-tunnel and fluid parameter control, generating flow/velocity/pressure visualizations."
         },
         detail: {
-          zh: "覆盖网格划分策略、边界条件模板和结果可视化模块，支持快速定位阻力异常与压差分布风险。",
-          en: "Includes meshing strategies, boundary-condition templates, and analysis views to quickly identify drag anomalies and pressure distribution risks."
+          zh: "迭代后支持多核并行与更高网格规模（文中实测最高到 800 万级）。从“马模型”到“赛车模型”，重点不是炫图，而是让参数修改能快速反馈到工程决策。",
+          en: "After iterations, it supports multicore execution and larger mesh scales (up to 8M in the article's setup). From horse to race car cases, the focus is fast engineering feedback, not just pretty plots."
         },
         tags: ["CFD", "Wind Tunnel", "Numerical Analysis"]
       },
@@ -1001,68 +1018,78 @@
         slug: "openclaw-im",
         title: { zh: "OpenClaw 通讯极简 IM 工具", en: "OpenClaw Minimal IM Tool" },
         description: {
-          zh: "轻量级即时通讯组件，聚焦稳定传输与低认知负担交互，适配 OpenClaw 通讯场景。",
-          en: "A lightweight IM layer tuned for OpenClaw with stable transport, concise interaction flow, and low-latency communication."
+          zh: "从 OpenClaw 实际使用痛点反推：做一个更轻、更可控的 Agent 通讯层，替代“把办公 IM 当控制台”的割裂体验。",
+          en: "Reverse-engineered from OpenClaw pain points: build a leaner agent communication layer instead of forcing office IM as a control terminal."
         },
         detail: {
-          zh: "包含会话状态管理、消息重试与失败补偿机制，可用于设备协同调试和工程状态广播。",
-          en: "Includes session-state control, retry and compensation mechanisms, suitable for collaborative device debugging and status broadcasting."
+          zh: "强调点对点链路、文件双向互传、插件化展示和低运维成本。目标不是做“大而全社交”，而是做“Agent 任务闭环”所需的最小能力集合。",
+          en: "Emphasizes point-to-point links, bidirectional file transfer, plugin-style views, and low ops cost. The goal is not social IM, but a minimal capability set for agent task closure."
         },
         tags: ["IM", "OpenClaw", "Low Latency"]
       }
     ];
 
+    function makeCoverImage(labelA, labelB, colorA, colorB) {
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='700'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='${colorA}'/><stop offset='100%' stop-color='${colorB}'/></linearGradient></defs><rect width='1200' height='700' fill='url(#g)'/><circle cx='980' cy='120' r='160' fill='rgba(255,255,255,0.16)'/><circle cx='190' cy='560' r='220' fill='rgba(255,255,255,0.12)'/><text x='70' y='315' font-size='72' fill='white' font-family='Segoe UI, PingFang SC, Microsoft YaHei, sans-serif' font-weight='700'>${labelA}</text><text x='70' y='400' font-size='38' fill='rgba(255,255,255,0.92)' font-family='Segoe UI, PingFang SC, Microsoft YaHei, sans-serif'>${labelB}</text></svg>`;
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+    }
+
     const blogs = [
       {
-        slug: "launch-blog",
-        title: { zh: "从 0 到 1 搭建 github.io 技术主页", en: "Building a github.io Tech Site from Scratch" },
+        slug: "code-show-talk",
+        title: { zh: "Code is cheap, show me the talk：三段 AI 工程实验复盘", en: "Code is Cheap, Show Me the Talk: Three AI Engineering Experiments" },
         summary: {
-          zh: "记录从信息架构、视觉风格到部署细节的完整流程。",
-          en: "A practical walkthrough from information architecture and design style to deployment details."
+          zh: "公众号原文总览：AD-Sim、WT-Sim、OpenClaw 三条线并行推进，核心观点是“AI 化时代还在黎明，但窗口已经打开”。",
+          en: "WeChat long-form overview across AD-Sim, WT-Sim, and OpenClaw. Core thesis: AI-native era is still dawn, but the opportunity window is open."
         },
         preview: {
-          zh: "文章包括仓库命名规范、主页结构拆分、可维护文案数据化，以及上线后更新策略。",
-          en: "Covers repository naming, homepage structure, data-driven copy management, and post-launch update strategy."
+          zh: "建议你后续把公众号完整图组逐步替换到下方卡片配图位。当前配图为可替换封面，文案已按原文语气组织成技术博客结构。",
+          en: "Replace the current cover slots with your original WeChat image set later. The copy already mirrors your narrative voice in a technical-blog structure."
         },
+        cover: makeCoverImage("Code is cheap", "show me the talk", "#3d74e2", "#19b4cf"),
+        url: "https://mp.weixin.qq.com/s/tUfq2I8KVfZZWv_F1rqDvw",
         date: "2026-03-16"
       },
       {
-        slug: "sensor-tradeoff",
-        title: { zh: "自动驾驶传感器布置仿真中的取舍逻辑", en: "Trade-offs in Autonomous Sensor Layout Simulation" },
+        slug: "ad-sim-build",
+        title: { zh: "AD-Sim 开发笔记：传感器覆盖不是堆数量", en: "AD-Sim Notes: Coverage Is Not Just More Sensors" },
         summary: {
-          zh: "从覆盖率、冗余与成本角度讨论传感器布局决策。",
-          en: "Discusses sensor placement decisions across coverage, redundancy, and cost."
+          zh: "围绕“少传感器、全覆盖、可解释”三目标，记录场景建模、参数调节与点云导出的完整链路。",
+          en: "A full chain from scene modeling to point-cloud export under three targets: fewer sensors, wider coverage, and interpretable results."
         },
         preview: {
-          zh: "内容聚焦关键指标权重设定、工况样本选择和仿真结果的工程解释方法。",
-          en: "Focuses on metric weighting, scenario sampling, and engineering interpretation of simulation outputs."
+          zh: "文中海绵宝宝场景是很好的工程示例：先用可视化把盲区问题说清，再谈参数优化与成本权衡。",
+          en: "The SpongeBob scene becomes an engineering example: make blind zones visible first, then optimize parameters and cost trade-offs."
         },
+        cover: makeCoverImage("AD-Sim", "Open3D | Sensor Coverage", "#5b5af6", "#2ac7d4"),
         date: "2026-03-10"
       },
       {
-        slug: "cfd-decision",
-        title: { zh: "CFD 可视化结果如何指导工程决策", en: "How CFD Visualizations Guide Engineering Decisions" },
+        slug: "wt-sim-iteration",
+        title: { zh: "WT-Sim 迭代纪要：从能跑到能用于决策", en: "WT-Sim Iteration: From Running to Decision-Making" },
         summary: {
-          zh: "总结流场图到设计修改建议之间的转译过程。",
-          en: "Summarizes how flow-field visualization can be translated into concrete design decisions."
+          zh: "基于 OpenFOAM 的轻量风洞，重点记录网格规模、多核并行与结果可视化如何影响调参效率。",
+          en: "A lightweight OpenFOAM tunnel log focused on mesh scale, multicore execution, and visualization-driven tuning efficiency."
         },
         preview: {
-          zh: "强调结果可读性、对比实验设计和多目标优化下的取舍路径。",
-          en: "Highlights result readability, comparative experiment setup, and trade-off paths in multi-objective optimization."
+          zh: "“马模型”和“赛车模型”是两个里程碑：一个验证流程完整性，一个验证并行性能与可复现实验。",
+          en: "Horse and race-car cases are two milestones: one validates workflow completeness, the other validates parallel performance and reproducibility."
         },
+        cover: makeCoverImage("WT-Sim", "OpenFOAM | 8M Mesh", "#416be7", "#44d8a7"),
         date: "2026-03-01"
       },
       {
-        slug: "im-reliability",
-        title: { zh: "极简 IM 的可靠性设计清单", en: "Reliability Checklist for a Minimal IM Stack" },
+        slug: "agent-im-native",
+        title: { zh: "从 OpenClaw 到 Agent 原生 IM：为什么要自己做通信层", en: "From OpenClaw to Agent-Native IM: Why Build Your Own Comm Layer" },
         summary: {
-          zh: "梳理连接恢复、投递确认与状态同步的核心设计点。",
-          en: "Outlines key reliability points including reconnect logic, delivery acknowledgements, and state synchronization."
+          zh: "把“安装门槛高、现有 IM 割裂、任务闭环弱”等真实问题，抽象为可落地的通讯系统需求列表。",
+          en: "Transforms practical pain points—setup friction, mismatched IM flows, weak task closure—into implementable communication requirements."
         },
         preview: {
-          zh: "文章给出状态机拆解方式和高并发情况下的降级处理策略。",
-          en: "Provides state-machine decomposition and graceful degradation strategy under high-concurrency conditions."
+          zh: "核心主张是“小而硬”：点对点、文件互传、插件化展示、可审计操作，比堆功能更接近 Agent 时代入口。",
+          en: "The core idea is 'small but hard': P2P, file exchange, plugin views, and auditable actions are closer to an agent-era entry point than feature bloat."
         },
+        cover: makeCoverImage("OpenClaw", "Agent-native IM", "#5364d8", "#20c6de"),
         date: "2026-02-20"
       }
     ];
@@ -1160,7 +1187,8 @@
 
     function renderBlogs() {
       blogListContainer.innerHTML = blogs.map(item => `
-        <a class="blog-item" href="#post-${item.slug}">
+        <a class="blog-item" href="${item.url || `#post-${item.slug}`}" ${item.url ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+          <img class="blog-thumb" src="${item.cover}" alt="${item.title[currentLang]}">
           <h3 class="blog-title">${item.title[currentLang]}</h3>
           <p class="blog-summary">${item.summary[currentLang]}</p>
           <div class="blog-meta">
@@ -1172,6 +1200,7 @@
 
       articlePreviewsContainer.innerHTML = blogs.map(item => `
         <article class="article-preview" id="post-${item.slug}">
+          <img class="preview-thumb" src="${item.cover}" alt="${item.title[currentLang]}">
           <h4>${item.title[currentLang]}</h4>
           <p>${item.preview[currentLang]}</p>
         </article>
